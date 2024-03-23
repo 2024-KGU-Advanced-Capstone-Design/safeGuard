@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity @Getter @Setter @RequiredArgsConstructor @Table(name = "test")
-public class Test {
+public class TestDomain {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
 
@@ -17,8 +17,8 @@ public class Test {
     @Column
     private int age;
 
-    public static Test toDomain(TestDTO dto){
-        Test domain = new Test();
+    public static TestDomain toDomain(TestDTO dto){
+        TestDomain domain = new TestDomain();
         domain.name = dto.getName();
         domain.age = dto.getAge();
 
