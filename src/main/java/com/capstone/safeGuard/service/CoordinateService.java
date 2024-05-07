@@ -43,9 +43,12 @@ public class CoordinateService {
     }
 
     @Transactional
-    public boolean deleteArea(Long coordinateId){
+    public boolean deleteArea(Long childId, Long coordinateId){
+        Optional<Child> foundChild = childRepository.findById(childId);
         Optional<Coordinate> foundCoordinate = coordinateRepository.findById(coordinateId);
-        if(foundCoordinate.isEmpty()){
+        if(foundChild.isEmpty() ||
+                foundCoordinate.isEmpty() ||
+                (foundCoordinate.get().getChild() != foundChild.get()) ){
             return false;
         }
 
